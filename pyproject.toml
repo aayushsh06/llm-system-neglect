@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "regime-shift"
+version = "0.1.0"
+description = "Replication of the regime-shift detection task of Wang, Wu and Wu (eLife 2025) on open-weight models via Ollama and Claude models via the Anthropic API"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff>=0.4", "httpx>=0.27"]
+api = ["anthropic>=0.40"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W", "SIM", "C4", "RET"]
+
+[tool.ruff.lint.per-file-ignores]
+# Long table and caption strings are kept on one line.
+"scripts/build_paper_numbers.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

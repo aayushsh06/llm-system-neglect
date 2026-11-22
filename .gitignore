@@ -1,0 +1,23 @@
+# environments and caches
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# secrets: the API key lives only in .env (copy .env.example)
+.env
+.env.*
+!.env.example
+
+# human data: downloaded from OSF by scripts/fetch_human_data.py, not redistributed
+data/human/
+
+# model results: distributed as a release asset (llm-system-neglect-results.tar.zst)
+# and unpacked into results/
+results/
+
+# the paper is not part of this repository; scripts/build_paper_numbers.py writes here
+paper/
+paper.pdf
